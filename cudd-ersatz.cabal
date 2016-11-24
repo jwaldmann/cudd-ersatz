@@ -1,0 +1,57 @@
+name:                cudd-ersatz
+version:             0.1.0.0
+synopsis:            Interface to CUDD in the style of Ersatz.
+description:         
+  <http://vlsi.colorado.edu/~fabio/CUDD/ CUDD>
+  is a state-of-the-art C library for Binary
+  Decision Diagrams (BDDs).
+  .
+  A low-level Haskell interface is provided by
+  <https://hackage.haskell.org/package/cudd cudd>.
+  .
+  The present library adds a higher level interface
+  in the style of the
+  <https://hackage.haskell.org/package/ersatz ersatz> SAT encoder.
+  .                   
+  Use operations of ersatz' @Boolean@ class to build formulas
+  in a purely functional way. 
+  .
+  Convert formulas to BDDs and query them in a monadic interface.
+  .
+  As in ersatz, shared subformulas (introduced by let bindings)
+  will be detected, and will be processed just once.
+  .
+  See the examples directory for usage.
+
+license:             GPL-3
+license-file:        LICENSE
+author:              Johannes Waldmann
+maintainer:          Johannes Waldmann
+-- copyright:           
+category:            Math
+build-type:          Simple
+extra-source-files:  ChangeLog.md
+cabal-version:       >=1.10
+
+Homepage:            https://github.com/jwaldmann/cudd-ersatz
+Source-Repository head
+    Type: git
+    Location: git://github.com/jwaldmann/cudd-ersatz.git
+           
+
+library
+  exposed-modules:     Cudd.Ersatz
+  other-modules:       Cudd.Ersatz.Internal.StableName
+  -- other-extensions:    
+  build-depends:       base == 4.9.* ,
+                       array, containers, unordered-containers,  mtl, 
+                       cudd, ersatz, lens 
+  hs-source-dirs:      src
+  default-language:    Haskell2010
+
+test-suite cudd-ersatz-queens
+  hs-source-dirs: examples
+  type: exitcode-stdio-1.0
+  main-is: Queens.hs
+  build-depends: base, cudd-ersatz, containers, array
+  
