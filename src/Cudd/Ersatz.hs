@@ -89,6 +89,7 @@ bdd b = node b $ \ case
   Or  x y -> fun2 C.bOr x y
   Xor  x y -> fun2 C.bXor x y
   Choose n y f -> fun3 C.bIte f y n
+  Implies x y -> fun3 C.bIte x y true
 
 fun2 f x y = use manager >>= \ m ->
     do a <- bdd x ; b <- bdd y ; lift $ f m a b

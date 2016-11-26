@@ -55,3 +55,9 @@ test-suite cudd-ersatz-queens
   main-is: Queens.hs
   build-depends: base, cudd-ersatz, containers, array
   
+test-suite cudd-ersatz-domino
+  hs-source-dirs: examples
+  type: exitcode-stdio-1.0
+  main-is: Domino.hs
+  build-depends: base, cudd-ersatz, containers
+  
