@@ -18,6 +18,7 @@ where
 import Ersatz.Bit (Boolean(..))
 import qualified Cudd.Imperative as C
 import qualified Cudd.C as C
+import qualified Cudd.Cudd 
 import Foreign
 
 import Prelude hiding ((||),(&&),not,and,or)
@@ -111,13 +112,9 @@ node a f = do
       return n
 
 -- | returns the number of models (minterms) of the BDD
-number_of_models d = use manager >>= \ m -> use next >>= \ n -> do
-  lift $ bCountMinterm m d n
-
-bCountMinterm (C.DDManager m) (C.DDNode d) v =
-  realToFrac <$> unsafeIOToST ( 
-    C.c_cuddCountMinterm m d (fromIntegral v) )
-
+number_of_models d =
+  use manager >>= \ m -> use next >>= \ v -> do
+    lift $ C.countMintermExact m d (fromIntegral v)
 
 -- | Abstract syntax tree of propositional logic formula.
 data Bit n
