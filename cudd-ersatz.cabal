@@ -60,4 +60,9 @@ test-suite cudd-ersatz-domino
   type: exitcode-stdio-1.0
   main-is: Domino.hs
   build-depends: base, cudd-ersatz, containers
-  
+
+test-suite cudd-ersatz-counter
+  hs-source-dirs: examples
+  type: exitcode-stdio-1.0
+  main-is: Counter.hs
+  build-depends: base, cudd-ersatz
