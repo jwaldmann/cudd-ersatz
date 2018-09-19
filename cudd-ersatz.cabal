@@ -1,5 +1,5 @@
 name:                cudd-ersatz
-version:             0.1.0.0
+version:             0.1.0.1
 synopsis:            Interface to CUDD in the style of Ersatz.
 description:         
   <http://vlsi.colorado.edu/~fabio/CUDD/ CUDD>
@@ -43,9 +43,9 @@ library
   exposed-modules:     Cudd.Ersatz
   other-modules:       Cudd.Ersatz.Internal.StableName
   -- other-extensions:    
-  build-depends:       base == 4.9.* ,
+  build-depends:       base ,
                        array, containers, unordered-containers,  mtl, 
-                       cudd, ersatz, lens 
+                       cudd >= 0.1.0.4.1, ersatz, lens 
   hs-source-dirs:      src
   default-language:    Haskell2010
 
