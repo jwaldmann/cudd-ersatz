@@ -43,7 +43,7 @@ library
   exposed-modules:     Cudd.Ersatz
   other-modules:       Cudd.Ersatz.Internal.StableName
   -- other-extensions:    
-  build-depends:       base == 4.9.* ,
+  build-depends:       base,
                        array, containers, unordered-containers,  mtl, 
                        cudd, ersatz, lens 
   hs-source-dirs:      src
@@ -54,4 +54,11 @@ test-suite cudd-ersatz-queens
   type: exitcode-stdio-1.0
   main-is: Queens.hs
   build-depends: base, cudd-ersatz, containers, array
-  
+
+test-suite cudd-ersatz-count
+  hs-source-dirs: examples
+  type: exitcode-stdio-1.0
+  main-is: Count.hs
+  build-depends: base, cudd-ersatz, containers, array
+
+    

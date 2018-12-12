@@ -111,12 +111,9 @@ node a f = do
       return n
 
 -- | returns the number of models (minterms) of the BDD
+number_of_models :: C.DDNode s u -> CUDD s u Integer
 number_of_models d = use manager >>= \ m -> use next >>= \ n -> do
-  lift $ bCountMinterm m d n
-
-bCountMinterm (C.DDManager m) (C.DDNode d) v =
-  realToFrac <$> unsafeIOToST ( 
-    C.c_cuddCountMinterm m d (fromIntegral v) )
+  lift $ C.countMintermExact m d n
 
 
 -- | Abstract syntax tree of propositional logic formula.
