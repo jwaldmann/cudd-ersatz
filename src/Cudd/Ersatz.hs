@@ -18,6 +18,7 @@ where
 import Ersatz.Bit (Boolean(..))
 import qualified Cudd.Imperative as C
 import qualified Cudd.C as C
+import qualified Cudd.Cudd 
 import Foreign
 
 import Prelude hiding ((||),(&&),not,and,or)
@@ -89,6 +90,7 @@ bdd b = node b $ \ case
   Or  x y -> fun2 C.bOr x y
   Xor  x y -> fun2 C.bXor x y
   Choose n y f -> fun3 C.bIte f y n
+  Implies x y -> fun3 C.bIte x y true
 
 fun2 f x y = use manager >>= \ m ->
     do a <- bdd x ; b <- bdd y ; lift $ f m a b
@@ -111,10 +113,9 @@ node a f = do
       return n
 
 -- | returns the number of models (minterms) of the BDD
-number_of_models :: C.DDNode s u -> CUDD s u Integer
-number_of_models d = use manager >>= \ m -> use next >>= \ n -> do
-  lift $ C.countMintermExact m d n
-
+number_of_models d =
+  use manager >>= \ m -> use next >>= \ v -> do
+    lift $ C.countMintermExact m d (fromIntegral v)
 
 -- | Abstract syntax tree of propositional logic formula.
 data Bit n
