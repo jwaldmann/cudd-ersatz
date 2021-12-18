@@ -2,11 +2,10 @@ resolver: nightly-2018-12-12
 
 packages:
 - .
-- location:
-    git: https://github.com/jwaldmann/haskell_cudd
-    commit: df1142ce71df275f45d14c6f8fd9821675f754a8
-  extra-dep: True
 
+extra-deps:
+- git: https://github.com/jwaldmann/haskell_cudd.git
+  commit: df1142ce71df275f45d14c6f8fd9821675f754a8
 
 system-ghc: true
 
